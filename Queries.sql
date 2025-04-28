@@ -1,24 +1,36 @@
+-- =============================================
+-- Student Depression Dataset - SQL Queries
+-- Dataset Analysis and Data Cleaning
+-- =============================================
+
+-- Correções e Tratamentos de Dados
+-- Data Corrections and Treatments
+
 -- Atualiza os valores da coluna CGPA
+-- Update the values in the CGPA column
 UPDATE [Student Depression Dataset]
 SET CGPA = 
     CASE 
-        -- Se o valor de CGPA for maior ou igual a 100 (indicando que tem 3 dígitos)
-        WHEN CGPA >= 100 THEN CGPA / 100  -- Divide por 100 para restaurar o ponto decimal corretamente (ex: 897 se torna 8.97)
         
-        -- Caso contrário, assume-se que o valor de CGPA tem apenas 2 dígitos
-        ELSE CGPA / 10                    -- Divide por 10 para ajustar o ponto decimal (ex: 59 se torna 5.9)
+        WHEN CGPA >= 100 THEN CGPA / 100  -- Divide by 100 to correct decimal placement
+        
+        
+        ELSE CGPA / 10  -- Divide by 10 for two-digit values
     END;
 
 -- Atualiza os valores da coluna Age
+-- Update the values in the Age column
 UPDATE [Student Depression Dataset]
-SET Age = Age / 10;  -- Divide os valores da coluna Age por 10 para corrigir a escala (ex: 330 se torna 33)
+SET Age = Age / 10;  -- Corrects scaling issues in age values
 
--- Altera o tipo de dado da coluna Age para inteiro (INT)
+-- Altera o tipo da coluna Age para inteiro (INT)
+-- Alter Age column datatype to integer (INT)
 ALTER TABLE [Student Depression Dataset]
-ALTER COLUMN Age INT;  -- Isso garante que a coluna Age seja tratada como um número inteiro sem casas decimais
+ALTER COLUMN Age INT;  
 
 
--- Verifying Null Values
+-- Verificação de Valores Nulos
+-- Checking for Null Values
 SELECT
     SUM(CASE WHEN [Gender] IS NULL THEN 1 ELSE 0 END) AS Gender_Null,
     SUM(CASE WHEN [Age] IS NULL THEN 1 ELSE 0 END) AS Age_Null,
@@ -39,11 +51,22 @@ SELECT
     SUM(CASE WHEN [Depression] IS NULL THEN 1 ELSE 0 END) AS Depression_Null
 FROM [Student Depression Dataset];
 
+-- Tratamento da Coluna Sleep_Duration
+-- Processing Sleep_Duration Column
+
+-- Consulta os valores distintos de Sleep_Duration
+-- Checking distinct values in Sleep_Duration
 SELECT DISTINCT Sleep_Duration
 FROM [Student Depression Dataset];
 
+-- Cria nova coluna Sleep_Duration_Hours
+-- Create new column Sleep_Duration_Hours
+
 ALTER TABLE [Student Depression Dataset]
 ADD Sleep_Duration_Hours FLOAT;
+
+-- Popula a nova coluna Sleep_Duration_Hours com valores numéricos
+-- Populate Sleep_Duration_Hours with numeric values
 
 UPDATE [Student Depression Dataset]
 SET Sleep_Duration_Hours = 
@@ -55,6 +78,11 @@ SET Sleep_Duration_Hours =
         ELSE NULL
     END;
 
+
+-- =============================================
+-- Inicio das Análises Exploratórias
+-- Beginning of Exploratory Analysis
+-- =============================================
 
 -- What is the average age of students with and without depression?
 
