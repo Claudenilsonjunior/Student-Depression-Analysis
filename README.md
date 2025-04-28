@@ -139,3 +139,12 @@ Vários ajustes foram realizados antes da análise:
 │
 ├── 📄 README.md     # Project description, dataset overview, and key questions
 │
+```
+✨ **Final Notes | Considerações Finais**
+The project is part of a personal portfolio initiative aimed at developing storytelling skills through data analysis, while raising awareness about mental health in the student community.
+
+O projeto faz parte de uma iniciativa pessoal de portfólio, com o objetivo de desenvolver habilidades de storytelling através da análise de dados, além de aumentar a conscientização sobre saúde mental na comunidade estudantil.
+
+🚀 **Author | Autor**
+Claudenilson Junior
+[LinkedIn](https://www.linkedin.com/in/claudenilson-junior/) | [GitHub](github.com/Claudenilsonjunior)
